@@ -1,0 +1,286 @@
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+			<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+			<script>
+
+				// TODO change
+				var numberOfSlides = 15;
+				var slideTime = 8; // seconds
+				// END TODO
+
+				var play = true;
+				var counter = 0;
+				function fadeoutAllTexts(){
+					for(var i = 0; i < numberOfSlides; i++){
+						$('#text' + (i+1)).hide();
+					}
+				}
+				function slide(direction){
+					// if the signal is slide right, its actually left, so its interchanged
+					if(direction == 'left'){
+						counter++;
+						if(counter >= numberOfSlides){
+							counter = 0;
+						}
+					} else if(direction == 'right') {
+						counter--;
+						if(counter < 0){
+							counter = numberOfSlides-1;
+						}
+					}
+					fadeoutAllTexts();
+				}
+				$(document).ready(function() {
+
+					$('#carouselExampleControls').carousel({
+						interval: slideTime * 1000,
+						pause: "false"
+					});
+
+					$('#pauseButton').on('click', function(){
+						play = !play;
+
+						if(play) {
+							$('#carouselExampleControls').carousel('cycle');
+							$('#carouselExampleControls').carousel('next');
+							fadeoutAllTexts();
+							$('#pauseImg').attr('src', 'images/pause.png'); 
+						} else {
+							$('#carouselExampleControls').carousel('pause');
+							$('#text' + (counter+1)).slideDown(1500);//( "slow", function() {});
+							$('#pauseImg').attr('src', 'images/play.png') 
+						}
+					})
+
+					$('#carouselExampleControls').on('slide.bs.carousel', function (test) {
+						slide(test.direction);
+					});
+					fadeoutAllTexts();
+				});
+
+
+			</script>
+			<style type="text/css">
+				body {
+					padding: 0;
+					margin: 0;
+					overflow-y: scroll;
+					font-family: arial;
+					font-size: 18px;
+					background-image: url("images/background.jpg");
+					background-position: center; 
+				}
+				.same-padding {
+					padding-left: 30px;
+					padding-right: 30px;
+					padding-top: 30px; 
+				}
+				.carousel .item {
+					width: 100%;
+				/*slider width */
+				}
+				.carousel .item img {
+					width: 100%;
+				/*img width*/
+				}
+				.container {
+					width: 100%;
+				}
+				.description-box {
+					margin-top: 30px;
+					padding: 10px;
+					background-color: white;
+				}
+				.description-text {
+					font-size: 80%;
+					font-family: SuisseBook;
+    				src: url("font/suissebook.otf") format("opentype");
+				}
+				.title-container {
+					height: 180px;
+					width: 100%;
+					line-height: 200px;
+					text-align: center;
+					background-color: white;
+				}
+				
+				.title-text {
+					display: inline-block;
+					vertical-align: middle;
+					line-height: normal;
+					font-size: 130%;
+					font-family: SuisseBook;
+    				src: url("font/suissebook.otf") format("opentype");
+				}
+
+			</style>
+	</head>
+	<body>
+		<div class="container-fluid same-padding">
+			<div id="carouselExampleControls" class="carousel slide" data-ride="carousel" width="500">
+				<div class="carousel-inner" role="listbox">
+					<!-- TODO HERE TITLES -->
+					<div class="carousel-item active">
+						<div class="d-block title-container">
+							<span class="title-text">TITLE 1</span>
+						</div>
+					</div>
+					<div class="carousel-item">
+						<div class="d-block title-container">
+							<span class="title-text">TITLE 2</span>
+						</div>
+					</div>
+					<div class="carousel-item">
+						<div class="d-block title-container">
+							<span class="title-text">TITLE 3</span>
+						</div>
+					</div>
+					<div class="carousel-item">
+						<div class="d-block title-container">
+							<span class="title-text">TITLE 4</span>
+						</div>
+					</div>
+					<div class="carousel-item">
+						<div class="d-block title-container">
+							<span class="title-text">TITLE 5</span>
+						</div>
+					</div>
+					<div class="carousel-item">
+						<div class="d-block title-container">
+							<span class="title-text">TITLE 6</span>
+						</div>
+					</div>
+					<div class="carousel-item">
+						<div class="d-block title-container">
+							<span class="title-text">TITLE 7</span>
+						</div>
+					</div>
+					<div class="carousel-item">
+						<div class="d-block title-container">
+							<span class="title-text">TITLE 8</span>
+						</div>
+					</div>
+					<div class="carousel-item">
+						<div class="d-block title-container">
+							<span class="title-text">TITLE 9</span>
+						</div>
+					</div>
+					<div class="carousel-item">
+						<div class="d-block title-container">
+							<span class="title-text">TITLE 10</span>
+						</div>
+					</div>
+					<div class="carousel-item">
+						<div class="d-block title-container">
+							<span class="title-text">TITLE 11</span>
+						</div>
+					</div>
+					<div class="carousel-item">
+						<div class="d-block title-container">
+							<span class="title-text">TITLE 12</span>
+						</div>
+					</div>
+					<div class="carousel-item">
+						<div class="d-block title-container">
+							<span class="title-text">TITLE 13</span>
+						</div>
+					</div>
+					<div class="carousel-item">
+						<div class="d-block title-container">
+							<span class="title-text">TITLE 14</span>
+						</div>
+					</div>
+					<div class="carousel-item">
+						<div class="d-block title-container">
+							<span class="title-text">TITLE 15</span>
+						</div>
+					</div>
+
+				</div>
+			</div>
+			<div width="100%" style="background-color: white; text-align: center; height: 60px" id="pauseButton">
+				<img id="pauseImg" src="images/pause.png" width="30px" style="margin: 15px">
+			</div>
+			<!-- TODO HERE DESCRIPTION TEXTS - IMPORTANT: CHANGE IDS (from text3 to text7 and so on) -->
+			<div id="text1" class="description-box">
+				<p class="description-text">
+					Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+				</p>
+			</div>
+			<div id="text2" class="description-box">
+				<p class="description-text">
+					Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+				</p>
+			</div>
+			<div id="text3" class="description-box">
+				<p class="description-text">
+					Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+				</p>
+			</div>
+			<div id="text4" class="description-box">
+				<p class="description-text">
+					Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+				</p>
+			</div>
+			<div id="text5" class="description-box">
+				<p class="description-text">
+					Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+				</p>
+			</div>
+			<div id="text6" class="description-box">
+				<p class="description-text">
+					Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+				</p>
+			</div>
+			<div id="text7" class="description-box">
+				<p class="description-text">
+					Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+				</p>
+			</div>
+			<div id="text8" class="description-box">
+				<p class="description-text">
+					Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+				</p>
+			</div>
+			<div id="text9" class="description-box">
+				<p class="description-text">
+					Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+				</p>
+			</div>
+			<div id="text10" class="description-box">
+				<p class="description-text">
+					Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+				</p>
+			</div>
+			<div id="text11" class="description-box">
+				<p class="description-text">
+					Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+				</p>
+			</div>
+			<div id="text12" class="description-box">
+				<p class="description-text">
+					Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+				</p>
+			</div>
+			<div id="text13" class="description-box">
+				<p class="description-text">
+					Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+				</p>
+			</div>
+			<div id="text14" class="description-box">
+				<p class="description-text">
+					Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+				</p>
+			</div>
+			<div id="text15" class="description-box">
+				<p class="description-text">
+					Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+				</p>
+			</div>
+		</div>
+	</body>
+</html>
