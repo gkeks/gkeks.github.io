@@ -37,6 +37,8 @@
 			}
 			$(document).ready(function() {
 
+				$('#srcsDiv').hide();
+
 				$('#carouselExampleControls').carousel({
 					interval: slideTime * 1000,
 					pause: "false"
@@ -49,10 +51,12 @@
 						$('#carouselExampleControls').carousel('cycle');
 						$('#carouselExampleControls').carousel('next');
 						fadeoutAllTexts();
+						$('#srcsDiv').hide();
 						$('#pauseImg').attr('src', 'images/pause.png'); 
 					} else {
 						$('#carouselExampleControls').carousel('pause');
 						$('#text' + (counter+1)).slideDown(1500);//( "slow", function() {});
+						$("#srcsDiv").slideDown(1500);
 						$('#pauseImg').attr('src', 'images/play.png') 
 					}
 				})
@@ -286,6 +290,9 @@ Dabei verstärken Meeresprodukte aus Aquakulturen das Problem der Überfischung,
 				<p class="description-text">
 					Nahezu alle in Bangladesch gezüchteten Garnelen sind für den Export bestimmt. Besonders bedenklich ist hierbei, dass für die Garnelenfarmen oft Küstenwälder abgeholzt werden. Dabei werden große Mengen CO<sub>2 </sub> freigesetzt und der Boden destabilisiert, da die Wurzeln zum natürlichen Küstenerhalt beitragen. So erodiert die Küstenlinie schneller, Meerwasser dringt weiter ins Landesinnere ein und versalzt Böden und drängt auch das Grundwasser unterirdisch zurück. <br> Auch der erwartete Anstieg des Meeresspiegels wird mehr Salzwasser ins Inland der bereits stark betroffenen Länder spülen.
 				</p>
+			</div>
+			<div style="margin-top: 20px" id="srcsDiv">
+				<a href="sources.html" style="color: black; background-color:white; padding: 10px 20px; font-family: 'SuisseBook'; font-size: 60%;">Quellen</a>
 			</div>
 		</div>
 	</body>
