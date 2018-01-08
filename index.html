@@ -2,122 +2,126 @@
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
-			<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-			<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
-			<script>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+		<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+		<script>
 
-				// TODO change
-				var numberOfSlides = 15;
-				var slideTime = 8; // seconds
-				// END TODO
+			// TODO change
+			var numberOfSlides = 15;
+			var slideTime = 8; // seconds
+			// END TODO
 
-				var play = true;
-				var counter = 0;
-				function fadeoutAllTexts(){
-					for(var i = 0; i < numberOfSlides; i++){
-						$('#text' + (i+1)).hide();
+			var play = true;
+			var counter = 0;
+			function fadeoutAllTexts(){
+				for(var i = 0; i < numberOfSlides; i++){
+					$('#text' + (i+1)).hide();
+				}
+			}
+			function slide(direction){
+				// if the signal is slide right, its actually left, so its interchanged
+				if(direction == 'left'){
+					counter++;
+					if(counter >= numberOfSlides){
+						counter = 0;
+					}
+				} else if(direction == 'right') {
+					counter--;
+					if(counter < 0){
+						counter = numberOfSlides-1;
 					}
 				}
-				function slide(direction){
-					// if the signal is slide right, its actually left, so its interchanged
-					if(direction == 'left'){
-						counter++;
-						if(counter >= numberOfSlides){
-							counter = 0;
-						}
-					} else if(direction == 'right') {
-						counter--;
-						if(counter < 0){
-							counter = numberOfSlides-1;
-						}
-					}
-					fadeoutAllTexts();
-				}
-				$(document).ready(function() {
+				fadeoutAllTexts();
+			}
+			$(document).ready(function() {
 
-					$('#carouselExampleControls').carousel({
-						interval: slideTime * 1000,
-						pause: "false"
-					});
-
-					$('#pauseButton').on('click', function(){
-						play = !play;
-
-						if(play) {
-							$('#carouselExampleControls').carousel('cycle');
-							$('#carouselExampleControls').carousel('next');
-							fadeoutAllTexts();
-							$('#pauseImg').attr('src', 'images/pause.png'); 
-						} else {
-							$('#carouselExampleControls').carousel('pause');
-							$('#text' + (counter+1)).slideDown(1500);//( "slow", function() {});
-							$('#pauseImg').attr('src', 'images/play.png') 
-						}
-					})
-
-					$('#carouselExampleControls').on('slide.bs.carousel', function (test) {
-						slide(test.direction);
-					});
-					fadeoutAllTexts();
+				$('#carouselExampleControls').carousel({
+					interval: slideTime * 1000,
+					pause: "false"
 				});
 
+				$('#pauseButton').on('click', function(){
+					play = !play;
 
-			</script>
-			<style type="text/css">
-				body {
-					padding: 0;
-					margin: 0;
-					overflow-y: scroll;
-					font-family: arial;
-					font-size: 18px;
-					background-image: url("images/background.jpg");
-					background-position: center; 
-				}
-				.same-padding {
-					padding-left: 30px;
-					padding-right: 30px;
-					padding-top: 30px; 
-				}
-				.carousel .item {
-					width: 100%;
-				/*slider width */
-				}
-				.carousel .item img {
-					width: 100%;
-				/*img width*/
-				}
-				.container {
-					width: 100%;
-				}
-				.description-box {
-					margin-top: 30px;
-					padding: 10px;
-					background-color: white;
-				}
-				.description-text {
-					font-size: 80%;
-					font-family: SuisseBook;
-    				src: url("font/suissebook.otf") format("opentype");
-				}
-				.title-container {
-					position: relative;
-					height: 180px;
-					width: 100%;
-					/* line-height: 180px; */
-					text-align: center;
-					background-color: white;
-				}
-				.title-text {
-					padding-top: 70px;
-					line-height: 27px;
-					font-size: 130%;
-					font-family: SuisseBook;
-    				src: url("font/suissebook.otf") format("opentype");
-				}
+					if(play) {
+						$('#carouselExampleControls').carousel('cycle');
+						$('#carouselExampleControls').carousel('next');
+						fadeoutAllTexts();
+						$('#pauseImg').attr('src', 'images/pause.png'); 
+					} else {
+						$('#carouselExampleControls').carousel('pause');
+						$('#text' + (counter+1)).slideDown(1500);//( "slow", function() {});
+						$('#pauseImg').attr('src', 'images/play.png') 
+					}
+				})
 
-			</style>
+				$('#carouselExampleControls').on('slide.bs.carousel', function (test) {
+					slide(test.direction);
+				});
+				fadeoutAllTexts();
+			});
+
+
+		</script>
+		<style type="text/css">
+			body {
+				padding: 0;
+				margin: 0;
+				overflow-y: scroll;
+				font-family: arial;
+				font-size: 18px;
+				background-image: url("images/background.jpg");
+				background-position: center; 
+			}
+			@font-face {
+				font-family: SuisseBook;
+				src: url("font/SuisseWorks-Book.woff") format("woff"), /* Modern Browsers */
+					url("font/SuisseWorks-Book.ttf")  format("truetype"); /* Safari, Android, iOS */
+			}
+			.same-padding {
+				padding-left: 30px;
+				padding-right: 30px;
+				padding-top: 30px; 
+			}
+			.carousel .item {
+				width: 100%;
+			/*slider width */
+			}
+			.carousel .item img {
+				width: 100%;
+			/*img width*/
+			}
+			.container {
+				width: 100%;
+			}
+			.description-box {
+				margin-top: 30px;
+				padding: 10px;
+				padding-left: 20px;
+				background-color: white;
+				font-size: 120%;
+			}
+			.description-text {
+				font-size: 80%;
+				font-family: "SuisseBook";
+			}
+			.title-container {
+				position: relative;
+				height: 180px;
+				width: 100%;
+				/* line-height: 180px; */
+				text-align: center;
+				background-color: white;
+			}
+			.title-text {
+				padding-top: 70px;
+				line-height: 27px;
+				font-size: 130%;
+				font-family: "SuisseBook";
+			}
+		</style>
 	</head>
 	<body>
 		<div class="container-fluid same-padding">
@@ -202,7 +206,7 @@
 
 				</div>
 			</div>
-			<div width="100%" style="background-color: white; text-align: center; height: 60px" id="pauseButton">
+			<div width="100%" style="background-color: white; text-align: center; height: 90px" id="pauseButton">
 				<img id="pauseImg" src="images/pause.png" width="30px" style="margin: 15px">
 			</div>
 			<!-- TODO HERE DESCRIPTION TEXTS - IMPORTANT: CHANGE IDS (from text3 to text7 and so on) -->
