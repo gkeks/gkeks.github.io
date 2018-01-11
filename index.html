@@ -79,6 +79,11 @@
 				background-image: url("images/background.jpg");
 				background-position: center; 
 			}
+			@-moz-document url-prefix() {
+				body {
+					background-position: top center;
+				}
+			}
 			@font-face {
 				font-family: SuisseBook;
 				src: url("font/SuisseWorks-Book.woff") format("woff"), /* Modern Browsers */
